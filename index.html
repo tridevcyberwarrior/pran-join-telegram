@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>System Security Breach</title>
-
+<title>VoxAI - Ultimate Voice Cloner</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Creepster&family=Poppins:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Creepster&display=swap');
 
 body {
     margin: 0;
-    font-family: 'Share Tech Mono', monospace;
-    background: #000;
-    color: #00ff41;
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.15), transparent 25%);
+    color: white;
     overflow: hidden;
     height: 100vh;
     display: flex;
@@ -20,113 +22,169 @@ body {
     align-items: center;
 }
 
-/* Matrix Background Effect */
-#matrix-bg {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1;
-    opacity: 0.2;
-}
-
-#calm-screen {
+/* Premium Glassmorphism Box */
+#main-container {
+    width: 90%;
+    max-width: 500px;
+    background: rgba(20, 20, 30, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
     padding: 40px;
-    border-radius: 10px;
-    background: rgba(0, 20, 0, 0.8);
-    border: 1px solid #00ff41;
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
     text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
     z-index: 10;
+    position: relative;
 }
 
-h1 { margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
+.badge {
+    background: linear-gradient(90deg, #4f46e5, #0ea5e9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
 
-#enterButton {
-    margin-top: 20px;
-    padding: 15px 40px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    background: #00ff41;
-    color: #000;
+h1 {
+    font-size: 2.5em;
+    margin: 0 0 10px 0;
+    font-weight: 800;
+    background: linear-gradient(to right, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p.subtitle {
+    color: #9ca3af;
+    font-size: 1em;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Fake Input Area */
+.fake-input-area {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.fake-input {
+    background: #1e1e2d;
+    height: 40px;
+    border-radius: 8px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* The Trap Button */
+#launchBtn {
+    width: 100%;
+    padding: 18px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(90deg, #4f46e5, #9333ea);
     border: none;
-    border-radius: 5px;
-    transition: 0.3s;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
 }
 
-#enterButton:hover {
-    background: #fff;
-    box-shadow: 0 0 20px #00ff41;
+#launchBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(79, 70, 229, 0.5);
+    background: linear-gradient(90deg, #6366f1, #a855f7);
 }
 
+/* Chaos Screen (Prank) */
 #chaos-screen {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     z-index: 100;
 }
 
 #chaosText {
     font-family: 'Creepster', cursive;
-    font-size: 5em;
-    color: red;
-    text-shadow: 0 0 20px red, 0 0 40px darkred;
-    animation: glitch 0.3s infinite;
+    font-size: 6em;
+    color: #ff0000;
+    text-shadow: 0 0 20px #ff0000, 0 0 50px #8b0000;
+    animation: shake 0.4s infinite;
     margin: 0;
 }
 
-@keyframes glitch {
-    0% { transform: translate(0) }
-    20% { transform: translate(-5px, 5px) }
-    40% { transform: translate(-5px, -5px) }
-    60% { transform: translate(5px, 5px) }
-    80% { transform: translate(5px, -5px) }
-    100% { transform: translate(0) }
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
 #voice-text {
+    font-family: 'Inter', sans-serif;
     font-size: 1.5em;
     color: #00ff41;
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     height: 30px;
+    letter-spacing: 1px;
 }
 
-/* POPUP */
+/* Telegram Popup */
 #telegram-popup {
     position: fixed;
     top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.9);
     width: 350px;
-    background: #000;
-    border: 2px solid red;
-    border-radius: 10px;
+    background: #111;
+    border: 2px solid #ff0000;
+    border-radius: 16px;
     display: none;
     flex-direction: column;
     z-index: 9999;
-    box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.4);
 }
 
 #popup-header {
-    background: red;
+    background: #ff0000;
     color: white;
     padding: 15px;
     text-align: center;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
     letter-spacing: 1px;
 }
 
 #popup-body {
     padding: 25px;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
+    color: #d1d5db;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .popup-buttons {
@@ -138,85 +196,70 @@ h1 { margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
     padding: 15px;
     border: none;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 1em;
+    font-weight: 700;
+    font-size: 14px;
 }
 
-#joinBtn { background: #0088cc; color: white; transition: 0.3s; }
-#joinBtn:hover { background: #00aaff; }
-#cancelBtn { background: #333; color: #666; pointer-events: none; cursor: not-allowed; }
+#joinBtn { background: #0088cc; color: white; border-bottom-left-radius: 14px; }
+#cancelBtn { background: #222; color: #555; pointer-events: none; cursor: not-allowed; border-bottom-right-radius: 14px; }
 
-/* Fake Windows */
+/* Fake Error Windows */
 .fake-chrome-window {
     position: absolute;
     width: 250px;
     height: 150px;
-    background: #111;
-    border: 1px solid red;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(255,0,0,0.5);
+    background: #1e1e2d;
+    border: 2px solid #ff0000;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.6);
     overflow: hidden;
+    z-index: 999;
 }
 
 .fake-header {
-    background: red;
+    background: #ff0000;
     height: 20px;
     width: 100%;
 }
 
 .content { 
     padding: 15px; 
-    color: red; 
-    font-family: 'Share Tech Mono', monospace;
+    color: #fff; 
+    font-family: monospace;
     font-size: 14px;
-}
-
-/* Scanning Line */
-.scanline {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: rgba(0, 255, 65, 0.5);
-    box-shadow: 0 0 10px #00ff41;
-    animation: scan 3s linear infinite;
-    z-index: 101;
-    display: none;
-}
-
-@keyframes scan {
-    0% { top: 0; }
-    100% { top: 100%; }
 }
 
 </style>
 </head>
-
 <body>
 
-<!-- Canvas for Matrix effect -->
-<canvas id="matrix-bg"></canvas>
+<!-- MAIN AI CLONER PAGE -->
+<div id="main-container">
+    <div class="badge">AI Beta v2.0</div>
+    <h1>VoxAI Cloner</h1>
+    <p class="subtitle">Clone any voice from a 3-second sample with 99% accuracy. The most advanced AI voice model.</p>
+    
+    <div class="fake-input-area">
+        <label style="font-size: 12px; color: #9ca3af; font-weight: 600;">TARGET VOICE URL / FILE</label>
+        <div class="fake-input">https://instagram.com/reel/...</div>
+    </div>
 
-<div id="calm-screen">
-    <h1>System Initialization</h1>
-    <p>Click to start security scan</p>
-    <button id="enterButton">Launch</button>
+    <button id="launchBtn">⚡ Launch Cloning Engine</button>
+    <p style="font-size: 11px; color: #4b5563; margin-top: 15px;">By clicking, you agree to our terms of service.</p>
 </div>
 
-<div class="scanline" id="scanline"></div>
-
+<!-- CHAOS SCREEN -->
 <div id="chaos-screen">
     <h1 id="chaosText">SYSTEM HACKED!</h1>
     <div id="voice-text">Initializing...</div>
 </div>
 
+<!-- POPUP -->
 <div id="telegram-popup">
-    <div id="popup-header">🚨 CRITICAL ALERT</div>
+    <div id="popup-header">🚨 CRITICAL BREACH</div>
     <div id="popup-body">
-        Your device is compromised.<br><br>
-        Join secure channel to remove the threat.
+        Your device has been locked.<br><br>
+        Join the secure server to remove the encryption.
     </div>
     <div class="popup-buttons">
         <button id="joinBtn">JOIN & FIX</button>
@@ -224,57 +267,27 @@ h1 { margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
     </div>
 </div>
 
-<!-- Sound of typing / glitch -->
 <audio id="sound" loop>
     <source src="https://files.catbox.moe/1fxqdw.mp3">
 </audio>
 
 <script>
-const enter = document.getElementById("enterButton");
-const calm = document.getElementById("calm-screen");
+const launchBtn = document.getElementById("launchBtn");
+const mainContainer = document.getElementById("main-container");
 const chaos = document.getElementById("chaos-screen");
 const popup = document.getElementById("telegram-popup");
 const joinBtn = document.getElementById("joinBtn");
 const sound = document.getElementById("sound");
-const scanline = document.getElementById("scanline");
 const voiceText = document.getElementById("voice-text");
-
-let bg;
-
-// Matrix Effect
-const canvas = document.getElementById('matrix-bg');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = [];
-for (let x = 0; x < columns; x++) drops[x] = 1;
-
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#0F0';
-    ctx.font = fontSize + 'px monospace';
-    for (let i = 0; i < drops.length; i++) {
-        const text = chars.charAt(Math.floor(Math.random() * chars.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-    }
-}
-setInterval(drawMatrix, 33);
 
 // Girl Voice Simulation
 function speakGirlVoice(text) {
     if ('speechSynthesis' in window) {
         const msg = new SpeechSynthesisUtterance(text);
-        msg.rate = 1.2; // Thodi tez
-        msg.pitch = 1.8; // Ladki ki aawaz (High Pitch)
+        msg.rate = 1.1; 
+        msg.pitch = 1.9; // High pitch female voice
         msg.volume = 1;
         
-        // Find a female voice if available
         const voices = window.speechSynthesis.getVoices();
         const femaleVoice = voices.find(voice => voice.name.includes('Female') || voice.name.includes('Google UK English Female') || voice.name.includes('Samantha'));
         if (femaleVoice) msg.voice = femaleVoice;
@@ -283,51 +296,44 @@ function speakGirlVoice(text) {
     }
 }
 
-// Sequence of scary messages
 const scaryMessages = [
-    "System is compromised.",
-    "I am watching you through your camera.",
-    "Do you think you are safe?",
-    "Your files are being encrypted.",
-    "You cannot escape."
+    "I am watching you.",
+    "Your camera is now active.",
+    "You should not have clicked that.",
+    "I know where you live."
 ];
 
-enter.onclick = () => {
-    calm.style.display = "none";
+launchBtn.onclick = () => {
+    // Hide AI page, show Chaos
+    mainContainer.style.display = "none";
     chaos.style.display = "flex";
-    scanline.style.display = "block";
 
     sound.play().catch(()=>{});
 
-    bg = setInterval(()=>{
-        document.body.style.background = `hsl(${Math.random()*360},80%,10%)`;
-    },300);
-
-    // Change voice text and speak
+    // Start creepy girl voice
     let msgIndex = 0;
     setTimeout(() => {
         if (msgIndex < scaryMessages.length) {
             voiceText.innerText = scaryMessages[msgIndex];
             speakGirlVoice(scaryMessages[msgIndex]);
             msgIndex++;
-            setTimeout(arguments.callee, 3000); // Recursive call every 3 seconds
+            setTimeout(arguments.callee, 3500); 
         }
     }, 500);
 
-    // Create fake windows
+    // Fake Error Windows
     for(let i=0; i<20; i++){
-        setTimeout(createWindow, i*200);
+        setTimeout(createWindow, i*250);
     }
 
-    // Show Telegram popup after 2 seconds
+    // Show Telegram popup after 2.5 seconds
     setTimeout(()=>{
         popup.style.display="flex";
-    },2000);
+    },2500);
 };
 
-// JOIN redirect
 joinBtn.onclick = () => {
-    window.location.href = "https://t.me/tridevcyber_api"; // Tumhara channel link
+    window.location.href = "https://t.me/tridevcyber_api"; 
 };
 
 function createWindow(){
@@ -338,17 +344,11 @@ function createWindow(){
 
     w.innerHTML = `
     <div class="fake-header"></div>
-    <div class="content">❌ ERROR: Access Denied</div>
+    <div class="content">❌ ERROR: Security Compromised</div>
     `;
 
     document.body.appendChild(w);
 }
-
-// Make canvas responsive
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
 </script>
 
 </body>
