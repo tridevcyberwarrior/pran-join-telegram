@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Dimensional</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Creepster&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#calm-screen {
+    padding: 40px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+#enterButton {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+    color: white;
+    border: none;
+    border-radius: 50px;
+}
+
+#chaos-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#chaosText {
+    font-family: 'Creepster';
+    font-size: 5em;
+    color: red;
+    animation: shake .4s infinite;
+}
+
+@keyframes shake {
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* POPUP */
+#telegram-popup {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background: #1f1f2e;
+    border: 3px solid red;
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+#popup-header {
+    background: red;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#popup-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.popup-buttons {
+    display: flex;
+}
+
+.popup-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+#joinBtn { background: #0088cc; color: white; }
+#cancelBtn { background: #333; color: red; pointer-events: none; cursor: not-allowed; }
+
+/* WINDOWS */
+.fake-chrome-window {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background: white;
+    border-radius: 10px;
+}
+
+.fake-header {
+    background: #eee;
+    padding: 5px;
+}
+
+.content { padding: 10px; color: black; }
+
+</style>
+</head>
+
+<body>
+
+<div id="calm-screen">
+    <h1>🚀 Welcome</h1>
+    <button id="enterButton">Launch</button>
+</div>
+
+<div id="chaos-screen">
+    <h1 id="chaosText">SYSTEM HACKED!</h1>
+</div>
+
+<div id="telegram-popup">
+    <div id="popup-header">🚨 ALERT</div>
+    <div id="popup-body">
+        Join Telegram to fix issue
+    </div>
+    <div class="popup-buttons">
+        <button id="joinBtn">JOIN</button>
+        <button id="cancelBtn">CANCEL</button>
+    </div>
+</div>
+
+<audio id="sound" loop>
+<source src="https://files.catbox.moe/1fxqdw.mp3">
+</audio>
+
+<script>
+const enter = document.getElementById("enterButton");
+const calm = document.getElementById("calm-screen");
+const chaos = document.getElementById("chaos-screen");
+const popup = document.getElementById("telegram-popup");
+const joinBtn = document.getElementById("joinBtn");
+const sound = document.getElementById("sound");
+
+let bg;
+
+enter.onclick = () => {
+    calm.style.display = "none";
+    chaos.style.display = "flex";
+
+    sound.play().catch(()=>{});
+
+    bg = setInterval(()=>{
+        document.body.style.background = `hsl(${Math.random()*360},80%,20%)`;
+    },300);
+
+    // windows safe limit
+    for(let i=0;i<25;i++){
+        setTimeout(createWindow,i*200);
+    }
+
+    setTimeout(()=>{
+        popup.style.display="flex";
+    },1500);
+};
+
+// JOIN redirect
+joinBtn.onclick = () => {
+    window.location.href = "https://t.me/tridevcyber_api";
+};
+
+function createWindow(){
+    let w = document.createElement("div");
+    w.className="fake-chrome-window";
+    w.style.top=Math.random()*80+"%";
+    w.style.left=Math.random()*80+"%";
+
+    w.innerHTML = `
+    <div class="fake-header"></div>
+    <div class="content">⚠ System Error...</div>
+    `;
+
+    document.body.appendChild(w);
+}
+</script>
+
+</body>
+</html>
