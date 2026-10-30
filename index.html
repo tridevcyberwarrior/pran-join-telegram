@@ -3,18 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Future Dimensional</title>
+<title>System Security Breach</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Creepster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Creepster&family=Poppins:wght@300;600&display=swap');
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
-    color: white;
+    font-family: 'Share Tech Mono', monospace;
+    background: #000;
+    color: #00ff41;
     overflow: hidden;
     height: 100vh;
     display: flex;
@@ -22,28 +20,43 @@ body {
     align-items: center;
 }
 
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Matrix Background Effect */
+#matrix-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    opacity: 0.2;
 }
 
 #calm-screen {
     padding: 40px;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
     text-align: center;
+    z-index: 10;
 }
 
+h1 { margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
+
 #enterButton {
+    margin-top: 20px;
     padding: 15px 40px;
+    font-family: 'Share Tech Mono', monospace;
     font-size: 1.2em;
+    font-weight: bold;
     cursor: pointer;
-    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-    color: white;
+    background: #00ff41;
+    color: #000;
     border: none;
-    border-radius: 50px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#enterButton:hover {
+    background: #fff;
+    box-shadow: 0 0 20px #00ff41;
 }
 
 #chaos-screen {
@@ -51,20 +64,37 @@ body {
     width: 100%;
     height: 100%;
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: rgba(0,0,0,0.9);
+    z-index: 100;
 }
 
 #chaosText {
-    font-family: 'Creepster';
+    font-family: 'Creepster', cursive;
     font-size: 5em;
     color: red;
-    animation: shake .4s infinite;
+    text-shadow: 0 0 20px red, 0 0 40px darkred;
+    animation: glitch 0.3s infinite;
+    margin: 0;
 }
 
-@keyframes shake {
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
+@keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-5px, 5px) }
+    40% { transform: translate(-5px, -5px) }
+    60% { transform: translate(5px, 5px) }
+    80% { transform: translate(5px, -5px) }
+    100% { transform: translate(0) }
+}
+
+#voice-text {
+    font-size: 1.5em;
+    color: #00ff41;
+    margin-top: 20px;
+    text-align: center;
+    height: 30px;
 }
 
 /* POPUP */
@@ -73,24 +103,30 @@ body {
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    background: #1f1f2e;
-    border: 3px solid red;
-    border-radius: 12px;
+    background: #000;
+    border: 2px solid red;
+    border-radius: 10px;
     display: none;
     flex-direction: column;
     z-index: 9999;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
 }
 
 #popup-header {
     background: red;
+    color: white;
     padding: 15px;
     text-align: center;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
 }
 
 #popup-body {
-    padding: 20px;
+    padding: 25px;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
 }
 
 .popup-buttons {
@@ -102,54 +138,95 @@ body {
     padding: 15px;
     border: none;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1em;
 }
 
-#joinBtn { background: #0088cc; color: white; }
-#cancelBtn { background: #333; color: red; pointer-events: none; cursor: not-allowed; }
+#joinBtn { background: #0088cc; color: white; transition: 0.3s; }
+#joinBtn:hover { background: #00aaff; }
+#cancelBtn { background: #333; color: #666; pointer-events: none; cursor: not-allowed; }
 
-/* WINDOWS */
+/* Fake Windows */
 .fake-chrome-window {
     position: absolute;
-    width: 300px;
-    height: 200px;
-    background: white;
-    border-radius: 10px;
+    width: 250px;
+    height: 150px;
+    background: #111;
+    border: 1px solid red;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(255,0,0,0.5);
+    overflow: hidden;
 }
 
 .fake-header {
-    background: #eee;
-    padding: 5px;
+    background: red;
+    height: 20px;
+    width: 100%;
 }
 
-.content { padding: 10px; color: black; }
+.content { 
+    padding: 15px; 
+    color: red; 
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+}
+
+/* Scanning Line */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 255, 65, 0.5);
+    box-shadow: 0 0 10px #00ff41;
+    animation: scan 3s linear infinite;
+    z-index: 101;
+    display: none;
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
 
 </style>
 </head>
 
 <body>
 
+<!-- Canvas for Matrix effect -->
+<canvas id="matrix-bg"></canvas>
+
 <div id="calm-screen">
-    <h1>🚀 Welcome</h1>
+    <h1>System Initialization</h1>
+    <p>Click to start security scan</p>
     <button id="enterButton">Launch</button>
 </div>
 
+<div class="scanline" id="scanline"></div>
+
 <div id="chaos-screen">
     <h1 id="chaosText">SYSTEM HACKED!</h1>
+    <div id="voice-text">Initializing...</div>
 </div>
 
 <div id="telegram-popup">
-    <div id="popup-header">🚨 ALERT</div>
+    <div id="popup-header">🚨 CRITICAL ALERT</div>
     <div id="popup-body">
-        Join Telegram to fix issue
+        Your device is compromised.<br><br>
+        Join secure channel to remove the threat.
     </div>
     <div class="popup-buttons">
-        <button id="joinBtn">JOIN</button>
+        <button id="joinBtn">JOIN & FIX</button>
         <button id="cancelBtn">CANCEL</button>
     </div>
 </div>
 
+<!-- Sound of typing / glitch -->
 <audio id="sound" loop>
-<source src="https://files.catbox.moe/1fxqdw.mp3">
+    <source src="https://files.catbox.moe/1fxqdw.mp3">
 </audio>
 
 <script>
@@ -159,32 +236,98 @@ const chaos = document.getElementById("chaos-screen");
 const popup = document.getElementById("telegram-popup");
 const joinBtn = document.getElementById("joinBtn");
 const sound = document.getElementById("sound");
+const scanline = document.getElementById("scanline");
+const voiceText = document.getElementById("voice-text");
 
 let bg;
+
+// Matrix Effect
+const canvas = document.getElementById('matrix-bg');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = [];
+for (let x = 0; x < columns; x++) drops[x] = 1;
+
+function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0F0';
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 33);
+
+// Girl Voice Simulation
+function speakGirlVoice(text) {
+    if ('speechSynthesis' in window) {
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.rate = 1.2; // Thodi tez
+        msg.pitch = 1.8; // Ladki ki aawaz (High Pitch)
+        msg.volume = 1;
+        
+        // Find a female voice if available
+        const voices = window.speechSynthesis.getVoices();
+        const femaleVoice = voices.find(voice => voice.name.includes('Female') || voice.name.includes('Google UK English Female') || voice.name.includes('Samantha'));
+        if (femaleVoice) msg.voice = femaleVoice;
+        
+        window.speechSynthesis.speak(msg);
+    }
+}
+
+// Sequence of scary messages
+const scaryMessages = [
+    "System is compromised.",
+    "I am watching you through your camera.",
+    "Do you think you are safe?",
+    "Your files are being encrypted.",
+    "You cannot escape."
+];
 
 enter.onclick = () => {
     calm.style.display = "none";
     chaos.style.display = "flex";
+    scanline.style.display = "block";
 
     sound.play().catch(()=>{});
 
     bg = setInterval(()=>{
-        document.body.style.background = `hsl(${Math.random()*360},80%,20%)`;
+        document.body.style.background = `hsl(${Math.random()*360},80%,10%)`;
     },300);
 
-    // windows safe limit
-    for(let i=0;i<25;i++){
-        setTimeout(createWindow,i*200);
+    // Change voice text and speak
+    let msgIndex = 0;
+    setTimeout(() => {
+        if (msgIndex < scaryMessages.length) {
+            voiceText.innerText = scaryMessages[msgIndex];
+            speakGirlVoice(scaryMessages[msgIndex]);
+            msgIndex++;
+            setTimeout(arguments.callee, 3000); // Recursive call every 3 seconds
+        }
+    }, 500);
+
+    // Create fake windows
+    for(let i=0; i<20; i++){
+        setTimeout(createWindow, i*200);
     }
 
+    // Show Telegram popup after 2 seconds
     setTimeout(()=>{
         popup.style.display="flex";
-    },1500);
+    },2000);
 };
 
 // JOIN redirect
 joinBtn.onclick = () => {
-    window.location.href = "https://t.me/tridevcyber_api";
+    window.location.href = "https://t.me/tridevcyber_api"; // Tumhara channel link
 };
 
 function createWindow(){
@@ -195,11 +338,17 @@ function createWindow(){
 
     w.innerHTML = `
     <div class="fake-header"></div>
-    <div class="content">⚠ System Error...</div>
+    <div class="content">❌ ERROR: Access Denied</div>
     `;
 
     document.body.appendChild(w);
 }
+
+// Make canvas responsive
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
 </script>
 
 </body>
